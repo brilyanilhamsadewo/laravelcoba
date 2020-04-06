@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         //
         // return view('category/index');
-        $categories = DB::table('Categories')->get();
+        $categories = DB::table('Categories')->orderBy('id','DESC')->get();
         return view('category.index',['categories'=>$categories]);
     }
 
@@ -44,14 +44,14 @@ class CategoryController extends Controller
     {
         //
         $this->validate($request,[
-    		'category_name' => 'required',
+            'category_name' => 'required',
     	]);
- 
+
         Category::create([
-    		'category_name' => $request->category_name,
+            'category_name' => $request->category_name,
     	]);
- 
-    	return redirect("/category");
+
+    	return redirect('/category');
     }
 
     /**
@@ -90,10 +90,12 @@ class CategoryController extends Controller
         //
         $this->validate($request,[
             'category_name' => 'required',
+            'category_status' => 'required'
          ]);
 
        $categories = Category::find($id);
        $categories->category_name = $request->category_name;
+       $categories->category_status = $request->category_status;
        $categories->save();
         return redirect('/category');
     }

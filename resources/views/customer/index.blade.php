@@ -24,6 +24,7 @@
         <th scope="col">State</th>
         <th scope="col">Zip Code</th>
         <th scope="col">Action</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -38,14 +39,19 @@
           <td>{{ $cus->city }}</td>
           <td>{{ $cus->state }}</td>
           <td>{{ $cus->zip_code }}</td>
+          <td>@if ($cus->customer_status==0)
+            Disable
+          @else
+            Enable
+          @endif</td>
           <td>
             <a href="/customer/edit/{{ $cus->id }}" class="btn btn-warning">Edit</a>
             <a href="/customer/destroy/{{ $cus->id }}" class="btn btn-danger">Hapus</a>
           </td>
-        </tr> 
+        </tr>
       @endforeach
     </tbody>
-    
+
   </table>
 
 @endsection

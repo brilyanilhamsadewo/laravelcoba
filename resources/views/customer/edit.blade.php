@@ -8,7 +8,7 @@
 <div class="container">
     <h1 class="mb-4">Data Customer</h1>
     <hr>
-    
+
     <div class="card mt-5">
         <div class="card-header text-center">
             CRUD Data Customer - <strong>EDIT DATA</strong>
@@ -17,7 +17,7 @@
             <a href="/customer" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
-            
+
 
             <form method="post" action="/customer/update/{{ $customers->id }}">
 
@@ -115,6 +115,21 @@
                     @if($errors->has('zip_code'))
                         <div class="text-danger">
                             {{ $errors->first('zip_code')}}
+                        </div>
+                    @endif
+
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="customer_status" class="form-control">
+                        <option value="0" <?php if($customers->customer_status=='0') ?> selected='selected'>Disable</option>
+                        <option value="1" <?php if($customers->customer_status=='1') ?> selected='selected'>Enable</option>
+                    </select>
+
+                    @if($errors->has('customer_status'))
+                        <div class="text-danger">
+                            {{ $errors->first('customer_status')}}
                         </div>
                     @endif
 

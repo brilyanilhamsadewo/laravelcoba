@@ -16,7 +16,7 @@ class CustomerController extends Controller
     public function index()
     {
         //Menampilkan semua data Customer
-        $customers = DB::table('Customers')->get();
+        $customers = DB::table('Customers')->orderBy('id','DESC')->get();
         return view('customer.index',['customers'=>$customers]);
     }
 
@@ -50,7 +50,7 @@ class CustomerController extends Controller
     		'state' => 'required',
     		'zip_code' => 'required'
     	]);
- 
+
         Customer::create([
     		'first_name' => $request->first_name,
     		'last_name' => $request->last_name,
@@ -59,10 +59,10 @@ class CustomerController extends Controller
     		'street' => $request->street,
     		'city' => $request->city,
     		'state' => $request->state,
-    		'zip_code' => $request->zip_code
+            'zip_code' => $request->zip_code,
     	]);
- 
-    	return redirect("/customer");
+
+    	return redirect('/customer');
     }
 
     /**
@@ -108,6 +108,7 @@ class CustomerController extends Controller
             'city' => 'required',
             'state' => 'required',
             'zip_code' => 'required',
+            'customer_status' => 'required',
          ]);
 
        $customers = Customer::find($id);
@@ -119,6 +120,7 @@ class CustomerController extends Controller
        $customers->city = $request->city;
        $customers->state = $request->state;
        $customers->zip_code = $request->zip_code;
+       $customers->customer_status = $request->customer_status;
        $customers->save();
         return redirect('/customer');
     }

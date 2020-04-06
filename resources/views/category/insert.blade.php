@@ -10,7 +10,7 @@
     <h1 class="mb-4">Insert Data Category</h1>
     <hr>
 
-    
+
     <form class="col-sm-4" method="post" action="/category/store">
         @csrf
         <div class="form-group">
@@ -28,7 +28,12 @@
                 </div>
             @endif
         </div>
-    
+
+        <div class="form-group">
+            <label for="category_status">Status Category</label>
+            <input type="text" class="form-control" id="category_status" placeholder="Automatic" name="category_status">
+        </div>
+
         <button type="submit" class="btn btn-primary" value="submit">Submit</button>
     </form>
 </div>

@@ -8,7 +8,7 @@
 <div class="container">
     <h1 class="mb-4">Data Category</h1>
     <hr>
-    
+
     <div class="card mt-5">
         <div class="card-header text-center">
             CRUD Data Category - <strong>EDIT DATA</strong>
@@ -17,7 +17,7 @@
             <a href="/category" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
-            
+
 
             <form method="post" action="/category/update/{{ $categories->id }}">
 
@@ -31,6 +31,21 @@
                     @if($errors->has('category_name'))
                         <div class="text-danger">
                             {{ $errors->first('category_name')}}
+                        </div>
+                    @endif
+
+                </div>
+
+                <div class="form-group">
+                    <label>Category Status</label>
+                    <select name="category_status" class="form-control">
+                        <option value="0" <?php if($categories->category_status=='0') ?> selected='selected'>Disable</option>
+                        <option value="1" <?php if($categories->category_status=='1') ?> selected='selected'>Enable</option>
+                    </select>
+
+                    @if($errors->has('category_status'))
+                        <div class="text-danger">
+                            {{ $errors->first('category_status')}}
                         </div>
                     @endif
 
